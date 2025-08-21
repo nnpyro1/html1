@@ -1,0 +1,92 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+:root {
+  --primary: #4361ee;  /* 主色调（科技蓝）*/
+  --secondary: #3f37c9; /* 强调色 */
+  --accent: #4cc9f0;   /* 点缀色 */
+  --light: #f8f9fa;    /* 浅背景 */
+  --light-2: #c6e3ff;
+  --dark: #212529;     /* 深色文字 */
+}
+
+body.d{
+    margin:0px;
+    padding: 0px;
+    min-height: 100vh;
+    background: #87c5fb;
+    background: -webkit-linear-gradient(326deg, #87c5fb 0%, #c5fbff 100%);
+    background: linear-gradient(326deg, #87c5fb 0%, #c5fbff 100%);
+    color:var(--dark);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+div.header{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 40px;
+    align-items:center;
+    float:left;
+    display: flex;
+    margin: 0;
+    
+    box-shadow: 0 0 15px 10px var(--accent);
+    background: #59CDE9;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0A2A88, #59CDE9);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0A2A88, #59CDE9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+button.btn1{
+    min-height: 40px;
+    /* border-radius: 20px; */
+    border-style: solid;
+    /* min-width: 60px; */
+    border-radius: 10px;
+    background-color: var(--secondary);
+    padding-left: 10px;
+    padding-right: 10px;
+
+    border-color: #0A2A88;
+    background-color: var(--secondary);
+    color: var(--light);
+}
+
+div.body{
+    width: 80%;
+    margin-left:10%;
+    margin-right:10%;
+    min-height: 50%;
+    vertical-align: middle;
+    align-items: center;
+}
+
+nav a{
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.85);
+    transition:all 0.3s;
+}
+
+div.hero-page{
+    height: 1000px;
+    background-color: var(--light-2);
+}
+
+*.text1{
+    color: var(--light-2);
+}
+
+div.exhibitbox1{
+    width: 300px;
+    height: 300px;
+    background-color: var(--light-2);
+    margin: 15px;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.clearfix::after{
+    content: '';display: table;clear: both;
+}

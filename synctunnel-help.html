@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>nnpyro SyncTunnel帮助文档</title>
-    <meta name="description" content="这是SyncTunnel的帮助文档，描述了如何使用SyncTunnel。有关软件信息请访问https://nnpyro.netlify.app">
+    <title>document</title>
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 2rem; }
         h1, h2, h3, h4, h5, h6 { margin-top: 2rem; margin-bottom: 1rem; }
@@ -33,6 +32,7 @@
 <blockquote>
 <p><strong>更新</strong><br>自<code>beta 1.2.7</code>开始，界面变更为<br><img src="https://github.com/nnpyro1/html1/blob/main/imgs_const/img_main_beta1.2.7.png?raw=true" alt="beta 1.2.7界面"></p>
 </blockquote>
+<p><a name="qs1"></a></p>
 <h3>2.2 快速配置</h3>
 <blockquote>
 <p>本段讲述了安装应用程序后如何进行配置。<br>本应用程序以配置简单著称，配置过程十分精简。  </p>
@@ -53,7 +53,7 @@
 <p>请务必记住您的密码。若密码遗忘会导致数据无法解密。</p>
 <p>本软件没有密码验证系统，这会导致两个人用一样的用户名时，软件自动将其视为同一个用户。请将用户名设为不容易重名的名字。请勿将用户名设为&quot;666&quot;&quot;1234&quot;等重名率高的名字。建议用户名5字符以上。</p>
 </blockquote>
-<p>如果是刚刚下载本软件的用户，请点击<a href="#qs2">这里</a>继续学习使用方法。</p>
+<p><em>如果是刚刚下载本软件的用户，请点击<a href="#qs2">这里</a>继续学习使用方法。</em></p>
 <h4>2.2.2 其他配置</h4>
 <h5>2.2.2.1 配置MQTT</h5>
 <blockquote>
@@ -105,6 +105,7 @@
 </table>
 <br>
 <br>
+<a name="qs3"></a>
 
 <h5>2.2.2.2 配置文件挂起</h5>
 <p>前言：基础功能只能实现在两个客户端同时在线时才可以进行互传文件。当其中一方离线时，另一方无法得到文件。因此为了满足大部分的需要，SyncTunnel软件提供文件挂起服务.<br>文件挂起需要在最后一个客户端离线之前手动操作。后续会增加自动挂起功能。手动挂起后数据会保存在Github服务器上，等到第一个客户端上线后手动下载文件，自动删除Github上面的文件。</p>
@@ -131,7 +132,7 @@
 </ol>
 <h6>2.2.2.2.2 配置应用程序</h6>
 <p><img src="https://github.com/nnpyro1/html1/blob/main/imgs_const/img_settings.png?raw=true" alt=""><br>打开SyncTunnel，转到“设置”页面，将注册Github时用的账号名称（不是邮件）填入<code>Github账号</code>字段，将刚刚复制的token填入<code>Github PAT</code>中，点击“保存设置”，应用程序自动重启，设置完成。</p>
-<p><br><br><br></p>
+<p><br><br><br><a name="qs2"></a></p>
 <h3>2.3 功能介绍与使用</h3>
 <h4>功能介绍</h4>
 <p>本软件是数据同步软件，可以在不同设备之间同步数据。默认情况采用STUN打洞进行文件同步。当路由器设备不支持STUN时可以自动切换到IPv6直连传输。<br>在使用之前，需要先点击左侧页面栏的<code>用户协议</code>认真阅读并同意。</p>
@@ -217,6 +218,7 @@
 <p>注意：接收端最后可能不会显示<code>文件释放完成</code>，这是由于网络波动导致的bug，如果发送端显示了文件释放完成或者接收端10秒内没有接收到任何包，则也算完成。</p>
 <h4>2.3.3 挂起文件</h4>
 <p>请确保已经按照上文所述设置了Github 账号和PAT。<br>在离线前，点击菜单栏的<code>文件</code>，点击<code>挂起文件</code>，开始挂起。<br><em><strong>注意，请勿在已经有文件挂起的时候再次进行文件挂起操作，否则会挂起失败！</strong></em><br>在上线后点击<code>文件</code>-&gt;<code>下载同步的文件</code>下载。</p>
+<p><em>如果是刚刚下载本软件的用户请点击<a href="#qs3">这里</a>继续学习文件挂起配置</em></p>
 <br>
 
 <h2>3 常见问题</h2>

@@ -10,8 +10,8 @@
 2. b
 3. c
 
-*i*
-**B**
+*i*  
+**B**  
 <details>
 <summary>123</summary>
   Sth...

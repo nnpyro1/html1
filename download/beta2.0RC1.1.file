@@ -1,3 +1,3 @@
 @echo off
-curl -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" -o "%USERPROFILE%\Desktop\installer.exe" "https://exe1.webgetstore.com/2026/03/08/6651ea9105841c86ba734bef82f50cd3.exe?sg=039c7e780d56b14aadfefa38bf178892&e=69ad84d7&fileName=SyncTunnel%20beta2.0RC1.1%20Windows-AMD64%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F.exe&fi=277433697"
+curl -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" -o "%USERPROFILE%\Desktop\installer.exe" "https://gitcode.com/2501_93498940/SyncTunnel/releases/download/beta2.0RC1.1/SyncTunnel%20beta2.0RC1.1%20Windows-AMD64%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F.exe"
 start "" "%USERPROFILE%\Desktop\installer.exe"

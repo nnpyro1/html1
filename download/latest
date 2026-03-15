@@ -1,4 +1,4 @@
 @echo off
-bitsadmin /transfer "正在下载" /priority high "https://gh.fhjhy.top/https://github.com/nnpyro1/SyncTunnel/releases/download/beta2.0RC1.1release2/SyncTunnel.beta2.0RC1.1release2.Windows-AMD64.exe" %temp%\install.exe
+curl -O https://gh.fhjhy.top/https://github.com/nnpyro1/SyncTunnel/releases/download/beta2.0RC1.1release2/SyncTunnel.beta2.0RC1.1release2.Windows-AMD64.exe -o %temp%\install.exe
 start /wait %temp%\install.exe
 del %temp%\install.exe >nul

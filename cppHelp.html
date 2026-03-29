@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C++&Qt 从入门到入门.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="cqt-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E9%97%A8">C++&amp;Qt 从入门到入门</h1>
+<p><s>C++&amp;Qt从入门到入土</s>（呸，是C++&amp;Qt从入门到精通）
+作者联系方式：
+QQ:2133789995
+邮件：nnpyro2@outlook.com</p>
+<h1 id="%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2">写在前面</h1>
+<p>首先先说一句，本教程字字都有用，有些东西你看起来目前可能是废话，但是到后面你才会发现这不是废话，所以：本教程必需<strong>一字一句的读，不放过任何一个字</strong>。
+这个教程主要是写给初学者的，帮助大家在最短的时间里面认识并学习C++.
+另外，本教程的顺序编排在一些人看来可能会有点奇怪，这是正常的，因为这个顺序才能帮助初学者更好的理解教程。宗旨：教程中不出现没学过的东西
+还有，学完每一章之后记得及时做题。另外，<strong>看完每一部分之后必需好好回顾，确保完全理解了之后再来看后面的</strong>
+有不懂的问题可以及时问。先问DeepSeek，再问我。</p>
+<p>OK，话不多说，让我们进入正题。</p>
+<h1 id="%E7%AC%AC%E9%9B%B6%E7%AB%A0-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE">第零章 开发环境配置</h1>
+<p>俗话说“工欲善其事，必先利其器”，拥有一个好的开发工具是进行开发的第一步。从教程标题可以看出，这个教程主要讲解C++和Qt两个板块，所以需要安装两个软件，分别用来开发纯C++和C++下的Qt.</p>
+<h2 id="01-%E5%AE%89%E8%A3%85devcpp">0.1 安装DevCpp</h2>
+<p>DevCpp是一个十分优秀的C++集成开发环境。网上有很多DevC++的版本，但是我们选用我自己认为最好用的RedPanda DevC++来使用。
+下载链接：<a href="https://gitee.com/royqh1979/Dev-CPP/releases/download/v6.7.5/Dev-Cpp.6.7.5.GCC.9.2.Setup.exe">https://gitee.com/royqh1979/Dev-CPP/releases/download/v6.7.5/Dev-Cpp.6.7.5.GCC.9.2.Setup.exe</a>
+下载完成后请安装软件。双击下载的exe，一路点Next，就可以安装了。
+安装完成后软件界面：
+<img src="https://picui.ogmua.cn/s1/2026/03/29/69c89f7fe071d.webp" alt="联想截图_20260329114152.png">
+软件安装成功</p>
+<h2 id="02-%E5%AE%89%E8%A3%85qtcreator">0.2 安装QtCreator</h2>
+<p>要想开发Qt，可以使用QtCreator.
+推荐使用Qt5.14.2+Qtcreator4.11，但是这个版本官网被屏蔽了，所以我自己拿百度网盘搞了一个。先别急着下载，先教你<strong>如何给百度网盘提速</strong>，让他速度变得很快</p>
+<h3 id="021-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E6%8F%90%E9%80%9F%E6%95%99%E7%A8%8B">0.2.1 百度网盘提速教程</h3>
+<p>登录<strong>电脑版百度网盘</strong>，点击右上角三个横杠，点击设置。
+<img src="https://picui.ogmua.cn/s1/2026/03/29/69c8a0d256616.webp" alt="联想截图_20260329114830.png">
+然后速度就变快了不止一倍。</p>
+<h3 id="022-%E4%B8%8B%E8%BD%BDqtcreator">0.2.2 下载QtCreator</h3>
+<p>点击<a href="https://pan.baidu.com/s/1ELncPDwmiZ6ntEUkKLLPeg?pwd=npag">这里</a>下载
+下载可能比较慢，没关系，放在后台就行，下载好了暂时不需要安装，因为最近不会用到。</p>
+<h2 id="03-%E5%AD%A6%E4%BC%9A%E4%BD%BF%E7%94%A8devcpp">0.3 学会使用DevCpp</h2>
+<p>打开桌面上的RedPanda Dev C++,软件界面如下。
+<img src="https://picui.ogmua.cn/s1/2026/03/29/69c89f7fe071d.webp" alt="联想截图_20260329114152.png"></p>
+<p>其中，上方写着“文件（F）”，“编辑（E）”，“搜索（S）”这一栏叫做<em>菜单栏</em>
+依次点击“文件（F）”，“新建”，“项目”，来新建一个项目
+<img src="https://picui.ogmua.cn/s1/2026/03/29/69c8a281473c7.webp" alt="联想截图_20260329115457.png"></p>
+<p>然后看见弹出的窗口，点击中间的“console Application”（第二个），然后在下面输入项目名称和保存路径（保存路径可以点击“项目文件夹”右边的图标进行选择）。项目保存路径推荐<strong>每个项目使用一个专用文件夹内，不要共用</strong>
+另外，项目名称中<em><strong>禁止有空格</strong></em>和特殊符号，就用英文和中文就行了。
+<img src="https://picui.ogmua.cn/s1/2026/03/29/69c8a380bb91e.webp" alt="联想截图_20260329115822.png"></p>
+<p>点击确定之后，编辑器中会出现一个文件，包含几行代码，把默认代码全部删掉就行。
+编辑器界面如下：
+<img src="https://picui.ogmua.cn/s1/2026/03/29/69c8a563ba8ab.webp" alt="联想截图_20260329120806.png"></p>
+<p>在你刚刚新建项目时选择的文件夹中，可以看到几个文件
+<img src="https://picui.ogmua.cn/s1/2026/03/29/69c8a486d476a.webp" alt="联想截图_20260329120424.png">
+下次如果想要打开项目的时候，双击<code>项目名.dev</code>文件就可以打开了。</p>
+<p>项目编译和运行：在键盘上按下按键<code>F9</code>就可以编译项目，<em><strong>编译完成之后</strong></em>（敲重点：必需是编译完成之后）可以按下F10运行项目。
+如果你的代码有问题，那么编译器下方会弹出一个列表，用红字显示你的问题是什么，同时代码有问题的那一行也会标红，你可以复制错误提示，然后自行百度搜索或者<strong>把所有代码和编译器报错文本都丢给DeepSeek</strong>并解决问题。下面展示了一个错误
+<img src="https://picui.ogmua.cn/s1/2026/03/29/69c8e9b926658.webp" alt="联想截图_20260329165918.png" title="联想截图_20260329165918.png" /><br/><br/>
+注意：<font color="#FF0000">一个空的项目，即代码文件中没有任何代码，这种项目是不能通过编译的，具体原因后面细讲。你只需要知道从本章开始，一直到本教程说了“从现在开始，教程中代码可以编译运行”为止，教程中出现的所有代码都不能正常编译并运行。</font></p>
+<p>现在正式进入学习</p>
+<p><font size=20px>第一部分 C++</font></p>
+<h1 id="%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%B3%A8%E9%87%8A">第一章 注释</h1>
+<p>很多人很奇怪，为什么要先学注释？答案只有一个：简单。
+在C++中，注释的语法是两个<strong>英文的斜杠</strong><code>//</code>。注意要点：</p>
+<ol>
+<li>斜杠要是英文的（这个不仅仅针对注释，在C++中，所有符号都要是英文的）</li>
+<li>斜杠有正斜杠<code>/</code>和反斜杠<code>\</code>，别打错了</li>
+</ol>
+<p>注释的功能是<strong>让编译器忽略双斜杠后面的内容</strong>，也就是说，这一行在双斜杠后面的任何文本，无论是英文还是中文，都会被忽略，但是双斜杠前面的文本以及不在这一行的文本都不会被忽略。
+下面看一个示例。在示例中，<code>callFunction();</code>是一个C++语句，这里大家不需要知道语句的意思，只用知道他是一个语句就行了。
+前面说的再强调一遍，从这里开始，一直到教程说“代码可以运行”为止，教程中的示例都不能运行。</p>
+<pre class="hljs"><code><div><span class="hljs-comment">//这是一个注释，从这里开始一直到此行的结尾，都会被忽略</span>
+</div></code></pre>
+<p>另外一个示例标明了注释的作用范围</p>
+<pre class="hljs"><code><div>callFunction();<span class="hljs-comment">//这是一个注释</span>
+</div></code></pre>
+<p>在这个示例中，callFunction这个语句仍然会被执行，因为<code>//</code>注释只忽略<code>//</code>后面的内容，不忽略前面的内容。</p>
+<p>再来看一个示例</p>
+<pre class="hljs"><code><div><span class="hljs-comment">//callFunction();</span>
+</div></code></pre>
+<p>这个时候，callFunction();语句不会运行，因为他写在了<code>//</code>的后面，<code>//</code>后面的一切内容都会被忽略。</p>
+<p>再来看一个示例</p>
+<pre class="hljs"><code><div>callFunction();
+<span class="hljs-comment">//这是一个注释</span>
+callFunction();
+</div></code></pre>
+<p>在这个示例中，两个<code>callFunction</code>都可以被运行，因为注释只影响一行，不影响上下的行。
+在DevC++软件中，被注释忽略的地方会用绿色标出，没有被忽略的地方是其他颜色。（如下图）
+<img src="https://picui.ogmua.cn/s1/2026/03/29/69c8abef7ef23.webp" alt="联想截图_20260329123541.png"></p>
+<p>另外，还有一种“多行注释”，需要<code>/*</code>和<code>*/</code>来实现，被忽略的范围在<code>/*</code>和<code>*/</code>之间。这种注释不细讲，见到认识就行，不推荐使用。</p>
+<pre class="hljs"><code><div><span class="hljs-comment">/*这是一个多行注释
+这几行都会被忽略
+啦啦啦啦啦啦
+一直到这里结束*/</span>
+callFunction();<span class="hljs-comment">//这行语句可以正常运行</span>
+</div></code></pre>
+<blockquote>
+<h2 id="%E7%BB%83%E4%B9%A0%E9%A2%98">练习题</h2>
+<h3 id="%E7%AC%AC%E4%B8%80%E5%A4%A7%E9%A2%98-%E5%88%A4%E6%96%AD%E9%A2%98">第一大题 判断题</h3>
+<p>判断下列是否是符合标准的注释，正确的在括号里面打钩，错误的在括号里面指出错误</p>
+<ol>
+<li><code>//注释</code>       (____)</li>
+<li><code>\\注释</code>       (__________)</li>
+<li><code>/ /注释</code>      (__________)</li>
+</ol>
+<h3 id="%E7%AC%AC%E4%BA%8C%E5%A4%A7%E9%A2%98-%E7%AE%80%E7%AD%94%E9%A2%98">第二大题 简答题</h3>
+<ol>
+<li>请写出一个符合标准的注释 __________________</li>
+</ol>
+<p>请抄题完成或使用QQ发送答案。</p>
+</blockquote>
+<h1 id="%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%8F%98%E9%87%8F%E5%88%9D%E6%AD%A5">第二章 变量初步</h1>
+<h2 id="21-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%9D%E6%AD%A5">2.1 数据类型初步</h2>
+<p>本章初步阐述了数据类型。详细的数据类型在后面的章节会另述。</p>
+<h3 id="211-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">2.1.1 数据类型</h3>
+<p>在生活中，有许多数据，例如车牌号，电话号码，一串文本，一个数字……
+因此，在C++中定义了“数据类型”，描述了一个数据的类型以及储存方式</p>
+<table>
+<thead>
+<tr>
+<th>数据类型名称</th>
+<th>中文名称</th>
+<th>详细介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>整型</td>
+<td>储存一个整数，例如5或者3，不能存储小数，默认范围是-2147483648~2147483647</td>
+</tr>
+<tr>
+<td>float</td>
+<td>浮点型</td>
+<td>储存一个小数，精确到小数点后7~8位，例如3.14或者5.0</td>
+</tr>
+<tr>
+<td>double</td>
+<td>双精度浮点数</td>
+<td>储存一个小数，精确到小数点后15~16位，可以看做是float的双精度版本（即精度x2），例如3.14159265358979或者3.0</td>
+</tr>
+<tr>
+<td>char</td>
+<td>字符</td>
+<td>存储一个ASCII字符（包含英文大小写字母，数字，英文符号以及一些特殊的控制字符，后面会详细展开）。注意：char类型<strong>只能储存一个ASCII字符</strong>，不能存储中文以及多个字符</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>布尔</td>
+<td>存储 真（<code>true</code>）或者 假(<code>false</code>)，也就是说这个类型只能存储两种情况。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="212-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%BF%AE%E9%A5%B0">2.1.2 数据类型修饰</h3>
+<p>根据上面的表格，我们发现int类型默认储存范围是-2147483648到2147483647，也就是说只能存储-2147483648到2147483647之间的数。有的时候我们需要存储更大的数字，有的时候我们不需要这么大的容量，希望减少储存范围来节约内存，有的时候我们不需要储存负数，只希望储存正数。这个时候我们就需要数据类型修饰符来修饰类型。</p>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>名称</th>
+<th>详细说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>singed</td>
+<td>有符号</td>
+<td>标记某个类型的储存范围包含负数和正数。这个标识符可以省略，因为int，float和double默认就是有符号的</td>
+</tr>
+<tr>
+<td>unsigned</td>
+<td>无符号</td>
+<td>标记某个类型不储存负数，只储存正数。例如，int类型默认是-2147483648到2147483647，总共能储存的范围有4294967296个数字，unsigned可以让int的储存范围变成0~4294967295，也就是说通过舍弃储存负数来让他拥有储存更大正数的能力</td>
+</tr>
+<tr>
+<td>long</td>
+<td>长</td>
+<td>以使用更多内存空间为代价，让某个数据类型能够存储更大的值，例如int的储存范围是-2147483648~2147483647,加上long后储存范围从-9223372036854775808到9223372036854775807，更大了。</td>
+</tr>
+<tr>
+<td>short</td>
+<td>短</td>
+<td>通过变小某个数据类型的储存范围，来节约内存。例如short修饰int就可以让储存范围变成-32768~32767</td>
+</tr>
+</tbody>
+</table>
+<p>那么如何进行修饰呢？只需要在类型名前面打上修饰符就行了。
+例如，要让unsigned修饰int，我们只需要输入<code>unsigned int</code>就行了（注意unsigned和int中间有空格）
+在C++中，类型名和修饰都<strong>严格区分大小写</strong>，上述关键字必需小写，否则编译器无法识别
+还有一个小技巧：在DevC++中，关键字（包含上述的类型名和修饰符）是深蓝色显示的（见下图）。
+<img src="https://picui.ogmua.cn/s1/2026/03/29/69c8bc546f8c0.webp" alt="联想截图_20260329134553.png"></p>
+<blockquote>
+<h4 id="%E7%BB%83%E4%B9%A0%E9%A2%98">练习题</h4>
+<p>判断下列类型写法是否正确，若不正确，请改正</p>
+<ol>
+<li>int</li>
+<li>double</li>
+<li>Float</li>
+<li>CHAR</li>
+<li>INT</li>
+<li>unsigned int</li>
+<li>UNSIGNED float</li>
+<li>long double</li>
+</ol>
+</blockquote>
+<h3 id="213-%E6%95%B0%E6%8D%AE%E7%9A%84%E5%86%99%E6%B3%95">2.1.3 数据的写法</h3>
+<p>我们知道了数据类型，也要知道数据的写法。</p>
+<ul>
+<li>int类型的数据如何在程序中写呢？在程序中，int类型的数据直接是一个整数，例如5或者3</li>
+<li>double类型的数据如何在程序中写呢？在程序中，double类型的数据直接可以表示为一个小数，例如3.14</li>
+<li>float类型的数据和double类型差不多，但是float类型的数据在写的时候需要在后面加一个f，例如3.14f或者1.23f或者1.0f（注意，必需有.0，直接写1f是错的）</li>
+<li>char类型的数据需要用单引号（注意，只能是英文的<strong>单引号</strong>，英文的双引号或者中文符号都是不行的）例如<code>'a'</code>，<code>'6'</code>等。另外，char类型只能表示一个字符，所以不能表示两个字符，也不能表示中文字符。所以<code>'aaaaa'</code>或者<code>'啊'</code>都是不行的</li>
+<li>bool类型在程序中只有两个值，一个是<code>true</code>，一个是<code>false</code></li>
+</ul>
+<p>在devC++中，int,double和float类型是草绿色，而char类型是橘色。
+<img src="https://picui.ogmua.cn/s1/2026/03/29/69c8e3f44f30b.webp" alt="联想截图_20260329163329.png"></p>
+<blockquote>
+<h4 id="%E7%BB%83%E4%B9%A0%E9%A2%98">练习题</h4>
+<ol>
+<li>请写出char类型的字母A</li>
+<li>请用float类型写出圆周率前3位</li>
+<li>请用double类型写出根号2的前3位</li>
+<li>请用int类型写出你的年龄</li>
+</ol>
+</blockquote>
+<h2 id="22-%E6%A0%87%E8%AF%86%E7%AC%A6">2.2 标识符</h2>
+<p>在代码中，有一些名称，例如函数名、变量名（详见后文）是可以自定义的，那么这些自定义的名称有规范吗？有的。
+下面是标识符规范：</p>
+<ol>
+<li>标识符只能包含大写英文字母A-Z，小写英文字母a-z，数字0-9，以及英文的下划线<code>_</code></li>
+<li>标识符不能以数字开头</li>
+</ol>
+<p>由上可知，标识符<strong>禁止包含空格、中文以及其他符号</strong>。
+因此，标识符命名尽量用英文。例如我需要表示字符个数，那么英文就是number of characters，因为不允许包含空格，所以就删掉空格变成numberofcharacters。这是一个符合规定的标识符，但是可读性太差，所有单词连到一起，不方便辨认。因此，我们可以使用下划线或者大写字母改变。
+方法1：在每个单词之间添加下划线<code>_</code>，因为标识符允许出现下划线，所以上面的那个标识符就可以命名为number_of_characters，是不是好辨认了？
+方法2：每个单词首字母大写，上面的标识符可改为NumberOfCharacters，是不是也很好辨认？
+但是请注意一点：<strong>上面两种方法都是建立在符合标识符命名规范的基础上的，符合规范是前提，否则编译器无法识别！</strong>
+在DevC++中，符合规定的标识符用天蓝色标识
+<img src="https://picui.ogmua.cn/s1/2026/03/29/69c8c0c2479bf.webp" alt="联想截图_20260329140431.png">
+当我们声明变量或者函数的时候（见后文），实际上是创建了一个标识符。重点来了：除了后面讲的作用域特殊情况以外，<strong>标识符不能重名</strong>。也就是说，如果你声明了一个名字叫做<code>abc</code>的变量（声明变量的语法见后文），那么你就不能再定义一个名字同样叫做<code>abc</code>的函数（见后文）</p>
+<blockquote>
+<h3 id="%E7%BB%83%E4%B9%A0%E9%A2%98">练习题</h3>
+<h4 id="%E4%B8%80-%E5%88%A4%E6%96%AD%E9%A2%98">一 判断题</h4>
+<p>请判断下列标识符那些符合规范，哪些不符合规范</p>
+<ol>
+<li>size</li>
+<li>keyboardInputEvent</li>
+<li>connect</li>
+<li>startDetached</li>
+<li>number_of_apples</li>
+<li>手机电量</li>
+<li>open the lamp</li>
+<li>charge！！！</li>
+<li>hello,world</li>
+</ol>
+<h4 id="%E4%BA%8C-%E7%AE%80%E7%AD%94%E9%A2%98">二 简答题</h4>
+<p>请写出5个符合规定的标识符</p>
+<br>
+</blockquote>
+<h2 id="23-%E5%8F%98%E9%87%8F%E5%88%9D%E6%AD%A5%E6%A6%82%E5%BF%B5">2.3 变量初步（概念）</h2>
+<p>在程序中，我们需要储存一些数据，例如电话号码，一个数字，一个字符，一个小数……这个时候，我们就可以使用变量。变量可以储存这些数据，并进行修改，读取，赋值和删除。
+在声明变量之前，我们需要先思考，这个变量需要使用哪个数据类型。例如，我需要储存字符个数，那么我就应该用int类型。如果我要存储小明的身高（可能不是整数），就需要使用float或者double类型。如果我需要存储“你最喜欢的英文字母”，就需要使用char类型。如果要存储你是否喜欢苹果这个信息，就需要使用bool类型。
+然后，你需要给变量想出一个名字。在以后使用、修改、读取这个变量的时候，都需要使用这个名字。值的一提的是，这个名字属于标识符，<strong>需要遵循标识符命名规范</strong></p>
+<p>一切都想好了，就可以开始编写程序。
+在使用变量之前，你需要先告诉编译器你的变量叫什么名字，他需要存储什么数据类型。这个告诉的过程就叫做变量声明。变量声明的语法如下：</p>
+<pre class="hljs"><code><div>数据类型 变量名;
+</div></code></pre>
+<p>要注意几个点：</p>
+<ol>
+<li>数据类型是前面讲过的int，double等等。</li>
+<li>数据类型和变量名之间要有一个或者多个空格</li>
+<li>变量名需要满足标识符命名规范</li>
+<li>最后也是最重要的，<font color="red">每个语句后面必需有英文的分号！！！其实不只是变量声明，任何C++语句<font size=5>都必须在结尾处打一个英文的分号</font></font></li>
+</ol>
+<p>例如你想要声明一个int类型，名字叫做“number_of_characters”的变量，就需要这样写：</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> number_of_characters;
+</div></code></pre>
+<p>如果你需要声明一个bool类型，名字叫is_key_A_pressed的变量，就需要这样写：</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">bool</span> is_key_A_pressed;
+</div></code></pre>
+<p>例如你想要声明一个unsigned int类型，名字叫做“age”的变量，就需要这样写：</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> age;
+</div></code></pre>
+<p>声明完成之后，就可以使用了，但是对于变量的使用，这里暂且不详细论述。等讲完函数之后再进行论述。</p>
+<blockquote>
+<h3 id="%E7%BB%83%E4%B9%A0%E9%A2%98">练习题</h3>
+<p>请判断下列是否是符合规定的变量声明
+double height
+double height;
+int age;
+float PI;
+long int result;
+unsigned int sqrtResult;
+请写出要求声明的变量</p>
+<ol>
+<li>声明一个bool类型，名字叫做succeeded的变量__________</li>
+<li>声明一个float类型，名字叫做x的变量__________</li>
+<li>声明一个unsigned int类型，名字叫做age的变量__________</li>
+</ol>
+</blockquote>
+<h1 id="%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%87%BD%E6%95%B0">第三章 函数</h1>
+<h2 id="31-%E5%87%BD%E6%95%B0%E6%A6%82%E5%BF%B5">3.1 函数概念</h2>
+<p>我们先来假设一个场景：你正在给一个机器人编程序，让他走路。你写了一段代码如下
+身体：面朝 充电桩方向
+左腿：往前5cm
+左腿：向下施加20N的力
+右腿：向上5cm
+右腿：向前15cm
+右腿：向下施加20N的力
+……
+<br>
+你就这样给他编写了一个走到充电桩充电的程序。但是如果你下次要在后面增加一个去厕所拉屎的程序，又得复制这一整段代码，然后修改面朝的方向，继续运行。如果你下一次又要增加一个去别的厕所的程序，又得重新复制粘贴。最尴尬的来了，如果你想要把“施加20N的力”改成施加30N的力，你就得把刚刚复制粘贴的所有20N改成30N，十分麻烦。
+于是，我们想，能不能把这些重复的，需要复制粘贴的语句将其“打包”起来，每次需要调用重复语句的时候，就可以只用写一句话，编译器自动会调用你“打包”出来的所有语句？可以，这就是函数。下面再来看一个示例：</p>
+<pre class="hljs"><code><div>定义一个函数：走一步路（请输入：int类型的 距离 和 int类型的 方向，0°到360°）{
+    身体：面向 （刚刚输入的 int类型的方向）
+    左腿：向前 （刚刚输入的int类型的距离） cm
+    右腿：......
+    ......
+}
+</div></code></pre>
+<p>然后，在后续的代码中就可以：</p>
+<pre class="hljs"><code><div>调用函数：走一步路（距离：5，方向：135°）;
+</div></code></pre>
+<p>此时，就相当于在调用函数的地方粘贴了函数内部的代码。这就是函数。</p>
+<p>到这里请先停一下，先确保你已经完全理解了函数的概念和用途，再往下看。</p>
+<h2 id="32-%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89">3.2 函数的定义</h2>
+<p>在定义函数前，我们需要先明确几个事项：</p>
+<ul>
+<li>函数的名称叫什么？（函数的名称遵循标识符命名规范）</li>
+<li>函数的返回值是什么数据类型？有些函数像我们刚刚编写的机器人走路函数一样，是进行一些操作，然而有一些函数，例如“获取当前电量”不仅需要执行一些操作，还需要告诉函数的调用者一个具体的数据。这个数据就叫做返回值，返回值的数据类型必需确定。有些函数例如刚刚的机器人走路函数不需要返回值的，那么返回值的数据类型就是<code>void</code>来告诉编译器这个函数没有返回值</li>
+<li>函数需要接收什么样的参数？例如刚刚的机器人函数，输入int类型的距离和int类型的方向就是参数。参数写在函数定义的尾部的一个括号里面，这个括号里面的所有东西就叫做传参列表。</li>
+</ul>
+<p>然后我们来学习函数定义的语法：</p>
+<pre class="hljs"><code><div>函数返回值数据类型 函数名(参数1类型 参数1名称,参数2类型 参数2名称,......){
+    函数体
+}
+</div></code></pre>
+<p>函数返回值数据类型可以是void（代表没有返回值），int或者是上面“数据类型”那一章提到的其他任何数据类型
+函数内的代码和语句<strong>必须写在英文的大括号<code>{</code>和<code>}</code>之间，否则这个语句就不在函数内</strong></p>
+<pre class="hljs"><code><div>函数返回值数据类型 函数名(参数1类型 参数1名称,参数2类型 参数2名称,......){
+    语句写在这里是函数内，属于这个函数
+}
+语句写在这里就不属于上面的函数
+</div></code></pre>
+<p>在这里还要强调一下：在C++中，<strong>所有大括号，中括号，小括号都必须配对</strong>，单独的括号是错的！
+例如:</p>
+<pre class="hljs"><code><div>{{{{ }}}}<span class="hljs-comment">//这些括号是对的</span>
+{{{ ((( [[[ ([ ]) ]]] ))) }}}<span class="hljs-comment">//这个也是对的</span>
+{{}<span class="hljs-comment">//这个是错的！左边多出来了一个{</span>
+{(})<span class="hljs-comment">//这个是错的！反括号的顺序错了！应该改为{()}</span>
+</div></code></pre>
+<p>函数名后面的括号里面就是传参列表，分别写上参数的类型，加上一个空格后写参数的名称，多个参数用<strong>英文的</strong>逗号分割。如果没有参数，就把括号留空，例如：</p>
+<pre class="hljs"><code><div>函数返回值数据类型 函数名(){
+    函数体
+}
+</div></code></pre>
+<p>不难看出，其实传参列表就是变量声明的语法，只不过变量声明后面不用分号，而是用逗号。声明的参数其实就是变量，可以在函数内当做变量来使用。
+下面我们尝试把刚刚的机器人走路函数翻译成C++。
+首先我们先来确定如下内容：</p>
+<ul>
+<li>返回值类型：无返回值（void）</li>
+<li>函数名；robotMove</li>
+<li>参数：
+<ul>
+<li>距离：distance（int类型）</li>
+<li>方向：direction（int类型）
+所以我们就可以写出如下代码：</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">robotMove</span><span class="hljs-params">(<span class="hljs-keyword">int</span> distance,<span class="hljs-keyword">int</span> direction)</span></span>{
+    <span class="hljs-comment">//在这里写上让机器人移动的代码</span>
+}
+</div></code></pre>
+<p>如果我们要写一个机器人跳跃的函数，一样分析：</p>
+<ul>
+<li>返回值类型：无返回值（void）</li>
+<li>函数名；robotJump</li>
+<li>参数：无参数
+可写出：</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">robotJump</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">//在这里写上让机器人跳一下的代码</span>
+}
+</div></code></pre>
+<p>如果我们要写一个返回值为5的函数，那么就可以：</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">return5function</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">5</span>;
+}
+</div></code></pre>
+<p>这里用到了return 语句，我们稍后会讲解</p>
+<h2 id="33-%E5%87%BD%E6%95%B0%E7%9A%84%E8%B0%83%E7%94%A8%E4%B8%8E%E5%AE%9E%E7%8E%B0">3.3 函数的调用与实现</h2>
+<h3 id="331-%E5%87%BD%E6%95%B0%E7%9A%84%E8%B0%83%E7%94%A8">3.3.1 函数的调用</h3>
+<p>学会了定义函数，接下来可以调用它了。
+如果我们还是定义了机器人移动的函数</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">robotMove</span><span class="hljs-params">(<span class="hljs-keyword">int</span> distance,<span class="hljs-keyword">int</span> direction)</span></span>{
+    <span class="hljs-comment">//在这里写上让机器人移动的代码，这里只是一个例子,大家不需要知道下面的语句什么意思，只需要知道他作用大概是让机器人移动</span>
+    face(direction);
+    moveLeftLeg(distance);
+    moveRightLeg(distance);
+}
+</div></code></pre>
+<p>如何调用它呢？
+我们只需要在需要调用的地方写上</p>
+<pre class="hljs"><code><div>robotMove(<span class="hljs-number">5</span>,<span class="hljs-number">270</span>);
+</div></code></pre>
+<p>接下来我们来看一看这个代码。
+首先，先写我们需要调用的函数的名字<code>robotMove</code>，然后再加上一个括号。括号里面写上函数的参数，和函数声明中的参数一一对应。在上面这个示例中，distance就是5，direction就是270。我们需要更直观的体现函数的作用：
+（注意，这段代码和之前的其他代码一样，都是不可以运行的）</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">robotMove</span><span class="hljs-params">(<span class="hljs-keyword">int</span> distance,<span class="hljs-keyword">int</span> direction)</span></span>{
+    <span class="hljs-comment">//在这里写上让机器人移动的代码，这里只是一个例子,大家不需要知道下面的语句什么意思，只需要知道他作用大概是让机器人移动</span>
+    face(direction);
+    moveLeftLeg(distance);
+    moveRightLeg(distance);
+}
+
+<span class="hljs-comment">//然后，在需要的地方</span>
+robotMove(<span class="hljs-number">5</span>,<span class="hljs-number">270</span>);
+<span class="hljs-comment">//这行语句等价与</span>
+face(<span class="hljs-number">270</span>);
+moveLeftLeg(<span class="hljs-number">5</span>);
+moveRightLeg(<span class="hljs-number">5</span>);
+<span class="hljs-comment">//也就是说，在函数定义中定义的参数会在调用的时候被替换成你调用时输入的数字</span>
+<span class="hljs-comment">//此时，distance代表5，direction代表270</span>
+
+
+<span class="hljs-comment">//再次调用</span>
+robotMove(<span class="hljs-number">10</span>,<span class="hljs-number">135</span>);
+<span class="hljs-comment">//等同于</span>
+face(<span class="hljs-number">135</span>);
+moveLeftLeg(<span class="hljs-number">10</span>);
+moveRightLeg(<span class="hljs-number">10</span>);
+<span class="hljs-comment">//此时，distance代表10，direction代表135</span>
+</div></code></pre>
+<p>所以，你应该已经明白了函数的作用：你在某个地方调用函数，就相当于编译器自动的帮你在某个地方粘贴了函数内部的代码。</p>
+<h3 id="332-%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9E%E7%8E%B0">3.3.2 函数的实现</h3>
+<p>这里重点讲一下返回值
+在函数内，可以使用return 语句来返回一个值。需要注意的是：<strong>函数执行到return语句之后会立刻退出，return后面的代码都不会执行</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">myFunction</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">5</span>;
+    <span class="hljs-comment">//如果在这里写了一些代码，那么这里的代码都不会执行</span>
+}
+</div></code></pre>
+<p>还有一点：返回值类型不是void的函数，必需返回一个值。
+具体如何读取返回值，我们等讲完变量在讲。</p>
+<h2 id="34-main%E5%87%BD%E6%95%B0">3.4 main函数</h2>
+<p>看一个代码</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myFunction</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">//这里是函数里面</span>
+}
+<span class="hljs-comment">//这里是函数外面</span>
+</div></code></pre>
+<p>我们把<strong>不属于任何一个函数的地方（例如上面代码的“这里是函数外面”注释）叫做全局作用域</strong>
+<strong>函数的定义必需写在函数外面，不能在其他函数里面定义一个函数</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myFunction</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">errorFunction</span><span class="hljs-params">()</span></span>{<span class="hljs-comment">//错误！函数定义不允许写在别的函数里面！</span>
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">correctFunction</span><span class="hljs-params">()</span></span>{<span class="hljs-comment">//正确：函数定义没有写在函数里面</span>
+}
+</div></code></pre>
+<p>说明一个点：在C++中，除了函数的定义必需写在别的函数的外面，以及一些其他少部分语句可以写在全局作用域，<strong>其他所有语句都必须写在函数里面，不允许写在函数外面（全局作用域）</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment">//语句不可以写在这里</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myFunction</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">//语句可以写在这里</span>
+}
+<span class="hljs-comment">//语句不可以写在这里</span>
+</div></code></pre>
+<p>那么，当我们运行程序之后，程序将会从哪里开始呢？
+事实上，每个程序都需要有一个main函数，他必须是：</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+
+}
+</div></code></pre>
+<p>所有程序都必需有一个返回值类型是int，函数名是main且没有传参列表的函数。当你在电脑上打开任何一个C++程序的时候，其实是电脑自动调用了main()函数，所以<strong>一切程序都会从main函数开始执行</strong>。这也解释了为什么之前的示例代码都无法运行：因为</p>
+<ol>
+<li>语句写在了全局作用域，对于大部分语句，这是不允许的</li>
+<li>程序中没有main函数</li>
+</ol>
+<p>如果程序中没有main函数，编译的时候编译器会报错并且莫名其妙跳转到其他文件，他显示的那一行也不是你的代码，就像这样：
+<img src="https://picui.ogmua.cn/s1/2026/03/29/69c8e9b926658.webp" alt="联想截图_20260329165918.png" title="联想截图_20260329165918.png" />
+这个时候大概率是因为你没写main函数，或者你的main函数写错了（例如你写的是void main而不是int main），你应该这么办：
+<img src="https://picui.ogmua.cn/s1/2026/03/29/69c8ec1df0a0f.webp" alt="联想截图_20260329170809.png"></p>
+<p>注意：main函数的返回值一般需要是0，如果返回其他表示程序运行中非正常退出。返回0是main函数正常退出的标准</p>
+<p>好的。<strong>从现在开始，如无特别说明，示例中有main函数的代码都可以运行了！</strong>
+按照第一章的方法，新建一个项目，然后复制代码进入程序</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<p>然后按下F9编译，等待进度条走完，下方显示&quot;编译时间：3s&quot;的时候，按下F10运行，等程序加载一下就会出现一个黑色的窗口。这个窗口的名字叫做控制台，是用来输出信息的，后面会用到，现在先不用。效果如下图
+<img src="https://picui.ogmua.cn/s1/2026/03/29/69c8ee2e9d4ee.webp" alt="联想截图_20260329171828.png"></p>
+<h2 id="35-%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E">3.5 函数声明</h2>
+<p>我们可以看一个函数：</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myFunction</span><span class="hljs-params">()</span></span>{
+
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    myFunction();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<p>这个代码是正常的。但是现在我有一个要求：把myFunction的定义移动到main函数的后面</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    myFunction();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myFunction</span><span class="hljs-params">()</span></span>{
+
+}
+</div></code></pre>
+<p>这个时候编译器会报错:[Error] 'myFunction' was not declared in this scope
+<img src="https://picui.ogmua.cn/s1/2026/03/29/69c8efddedb49.webp" alt="联想截图_20260329172440.png">
+这是因为编译器在编译main函数的时候，还没有看到myFunction的定义，所以他根本不知道myFunction是什么鬼东西，就报错。
+于是我们可以进行<strong>函数声明</strong>，简单来说就是告诉编译器“myFunction是个函数，有这个东西，你先别急着报错，等你看完整个代码之后你就能找到定义了”
+和函数定义一样，函数声明也不能写在函数的里面，必需写在函数外面。
+函数声明的格式是：</p>
+<pre class="hljs"><code><div>函数返回值类型 函数名(传参列表);
+</div></code></pre>
+<p>其实函数声明就是函数定义把大括号换成分号就行了。
+值的注意的是，<strong>函数声明的返回值类型，函数名和传参列表必需和函数定义完全一样</strong>
+因此，上面的代码可以改为：</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myFunction</span><span class="hljs-params">()</span></span>;  <span class="hljs-comment">//函数声明</span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    myFunction();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myFunction</span><span class="hljs-params">()</span></span>{
+
+}
+</div></code></pre>
+<p>之后代码可以正常运行了。
+<br></p>
+<p>函数是不能重复定义的，例如：</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myFunction</span><span class="hljs-params">()</span></span>;  <span class="hljs-comment">//函数声明</span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    myFunction();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myFunction</span><span class="hljs-params">()</span></span>{
+
+}
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myFunction</span><span class="hljs-params">()</span></span>{<span class="hljs-comment">//错误！重复定义了myFunction函数！</span>
+
+}
+</div></code></pre>
+<br>
+但是函数声明是可以重复的。
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myFunction</span><span class="hljs-params">()</span></span>;  <span class="hljs-comment">//函数声明</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myFunction</span><span class="hljs-params">()</span></span>;  <span class="hljs-comment">//函数声明第二遍</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myFunction</span><span class="hljs-params">()</span></span>;  <span class="hljs-comment">//函数声明第三遍</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myFunction</span><span class="hljs-params">()</span></span>;  <span class="hljs-comment">//函数声明第四遍</span>
+<span class="hljs-comment">//还可以继续增加，都没有问题。</span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    myFunction();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myFunction</span><span class="hljs-params">()</span></span>{
+
+}
+</div></code></pre>
+<h1 id="%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%92%8C%E5%8F%98%E9%87%8F">第四章 数据和变量</h1>
+<p>此章节未完待续
+<font size=20>未完待续，感谢您的支持</font></p>
+
+</body>
+</html>

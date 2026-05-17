@@ -1,4 +1,4 @@
 @echo off
-curl https://gh.fhjhy.top/https://github.com/nnpyro1/download/releases/download/synctunnel/SyncTunnel.beta.Windows.exe -o %temp%\install.exe
+bitsadmin /transfer synctunneldownload /download https://gh.fhjhy.top/https://github.com/nnpyro1/download/releases/download/synctunnel/SyncTunnel.beta.Windows.exe %temp%\install.exe
 start /wait %temp%\install.exe
 del %temp%\install.exe >nul
